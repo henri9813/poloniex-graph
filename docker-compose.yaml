@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  app:
+    image: golang:1.16-alpine
+    working_dir: /poloniex-graph
+    command: go run .
+    volumes:
+    - ".:/poloniex-graph"
+    env_file:
+      - .env
+  influxdb:
+    image: influxdb:1.8.0
+    env_file:
+      - .env
+    volumes:
+    - ./data/influxdb:/var/lib/influxdb
+  grafana:
+    image: grafana/grafana
+    ports:
+    - 3000:3000
+    environment:
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource
