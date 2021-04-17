@@ -45,9 +45,14 @@ func main()  {
 			var ticker poloniex.Ticker
 			if ticker, err = getTickerForBalance(tickers, name); err != nil {
 				log.Print(err)
+				continue
 			}
 
 			amount := ticker.Last*available
+
+			if amount < 1 { // Skip too little money
+ 				continue
+			}
 
 			cryptoPoint, _ := influxdb.NewPoint(
 				"crypto",
@@ -62,8 +67,6 @@ func main()  {
 			batchPoints.AddPoint(cryptoPoint)
 
 			total += amount
-			log.Print(ticker)
-			log.Printf("You have : %f %s because %f * %f ", ticker.Last*available, name, ticker.Last, available)
 		}
 
 		cryptoPoint, _ := influxdb.NewPoint(
