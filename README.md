@@ -27,3 +27,11 @@ docker-compose up
 > Comment the `build` line 
 
 `grafana-dashboard.json` contain a dashboard you can import into the Grafana.
+
+## Developpement
+
+You can use the `docker-compose.dev.yaml` for development purpose and test
+
+```
+docker-compose -f docker-compose.dev.yaml up
+```

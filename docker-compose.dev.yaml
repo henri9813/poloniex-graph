@@ -2,7 +2,11 @@ version: '3'
 
 services:
   app:
-    image: henri9813/poloniex-graph
+    image: golang:1.16-alpine
+    working_dir: /poloniex-graph
+    command: go run .
+    volumes:
+    - ".:/poloniex-graph"
     env_file:
       - .env
   influxdb:
