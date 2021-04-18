@@ -3,7 +3,6 @@ version: '3'
 services:
   app:
     image: henri9813/poloniex-graph
-    build: . # <-- Comment here if you don't want to build
     working_dir: /poloniex-graph
     command: go run .
     volumes:
