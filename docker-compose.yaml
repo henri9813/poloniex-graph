@@ -1,8 +1,8 @@
-version: '3'
+version: "3"
 
 services:
   app:
-    image: henri9813/poloniex-graph
+    image: henri9813/poloniex-graph:X.Y.Z
     env_file:
       - .env
   influxdb:
@@ -10,10 +10,10 @@ services:
     env_file:
       - .env
     volumes:
-    - ./data/influxdb:/var/lib/influxdb
+      - ./data/influxdb:/var/lib/influxdb
   grafana:
     image: grafana/grafana
     ports:
-    - 3000:3000
+      - 3000:3000
     environment:
       GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource
