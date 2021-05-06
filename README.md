@@ -12,6 +12,7 @@ This project permit retrieve your poloniex Balance and send it to a InfluxDB ins
 - INFLUXDB_USER_PASSWORD
 
 Copy the `.env.dist` to `.env`
+
 ```
 cp .env.dist .env
 ```
@@ -24,9 +25,11 @@ You can use `henri9813/poloniex-graph` docker image.
 docker-compose up
 ```
 
-> Comment the `build` line 
+### Grafana
 
-`grafana-dashboard.json` contain a dashboard you can import into the Grafana.
+You need to fill the datasource in the Grafana interface.
+
+You can import the `grafana-dashboard.json` which contain the dashboard.
 
 ## Developpement
 

@@ -8,7 +8,7 @@ import (
 )
 
 var influxClient influxdb.Client
-var influxDatabase  string
+var influxDatabase string
 
 func init() {
 	var influxURL, influxUsername, influxPassword string

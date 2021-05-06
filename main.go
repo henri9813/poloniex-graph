@@ -13,7 +13,7 @@ import (
 	"github.com/jyap808/go-poloniex"
 )
 
-func main()  {
+func main() {
 	client := poloniex.New(os.Getenv("POLONIEX_API_KEY"), os.Getenv("POLONIEX_API_SECRET"))
 
 	for {
@@ -22,7 +22,7 @@ func main()  {
 		tickers, err := client.GetTickers()
 		if err != nil {
 			log.Printf("An error occured, retrying in 10s: '%v'", err)
-			time.Sleep(10*time.Second)
+			time.Sleep(10 * time.Second)
 			continue
 		}
 
@@ -37,8 +37,9 @@ func main()  {
 
 		for name, balance := range balances {
 			available, _ := strconv.ParseFloat(balance.Available, 64)
+			onOrders, _ := strconv.ParseFloat(balance.OnOrders, 64)
 
-			if available == 0 {
+			if available == 0 && onOrders == 0 {
 				continue
 			}
 
@@ -48,10 +49,10 @@ func main()  {
 				continue
 			}
 
-			amount := ticker.Last*available
+			amount := ticker.Last * (available + onOrders)
 
 			if amount < 1 { // Skip too little money
- 				continue
+				continue
 			}
 
 			cryptoPoint, _ := influxdb.NewPoint(
@@ -87,11 +88,11 @@ func main()  {
 		}
 
 		log.Printf("Total: %f", total)
-		time.Sleep(time.Second*10)
+		time.Sleep(time.Second * 10)
 	}
 }
 
-func getTickerForBalance(tickers map[string]poloniex.Ticker, balanceName string) (poloniex.Ticker, error){
+func getTickerForBalance(tickers map[string]poloniex.Ticker, balanceName string) (poloniex.Ticker, error) {
 	for name, ticker := range tickers {
 		if strings.HasSuffix(name, balanceName) {
 			if strings.Contains(name, "USDT") {

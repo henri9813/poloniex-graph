@@ -66,21 +66,15 @@
         {
           "groupBy": [
             {
-              "params": [
-                "$__interval"
-              ],
+              "params": ["$__interval"],
               "type": "time"
             },
             {
-              "params": [
-                "name"
-              ],
+              "params": ["name"],
               "type": "tag"
             },
             {
-              "params": [
-                "null"
-              ],
+              "params": ["null"],
               "type": "fill"
             }
           ],
@@ -92,9 +86,7 @@
           "select": [
             [
               {
-                "params": [
-                  "total"
-                ],
+                "params": ["total"],
                 "type": "field"
               },
               {
