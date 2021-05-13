@@ -49,7 +49,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "connected",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -66,15 +66,21 @@
         {
           "groupBy": [
             {
-              "params": ["$__interval"],
+              "params": [
+                "5m"
+              ],
               "type": "time"
             },
             {
-              "params": ["name"],
+              "params": [
+                "name"
+              ],
               "type": "tag"
             },
             {
-              "params": ["null"],
+              "params": [
+                "null"
+              ],
               "type": "fill"
             }
           ],
@@ -86,7 +92,9 @@
           "select": [
             [
               {
-                "params": ["total"],
+                "params": [
+                  "total"
+                ],
                 "type": "field"
               },
               {
@@ -102,7 +110,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Panel Title",
+      "title": "Poloniex Balances",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -118,6 +126,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:78",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -126,6 +135,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:79",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -148,12 +158,12 @@
     "list": []
   },
   "time": {
-    "from": "2021-04-16T15:03:06.665Z",
-    "to": "2021-04-16T20:23:06.665Z"
+    "from": "now-2d",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Crpyto Dashboard",
   "uid": "I7MB1AuGk",
-  "version": 2
+  "version": 4
 }
